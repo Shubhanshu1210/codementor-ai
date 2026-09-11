@@ -1,4 +1,4 @@
-Live Demo : [https://codementor-ai-dtsb.onrender.com?utm_source=chatgpt.com](https://codementor-ai-dtsb.onrender.com)
+Live Demo : https://codementor-ai-dtsb.onrender.com
 # CodeMentor AI
 
 CodeMentor AI is an AI-powered code review application. It combines a Java/Spring Boot backend with a React/Vite frontend to analyze submitted source code using Google's Gemini API and present focused engineering feedback.
