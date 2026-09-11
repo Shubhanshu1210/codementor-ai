@@ -1,225 +1,421 @@
-Live Demo : https://codementor-ai-dtsb.onrender.com
-# CodeMentor AI
+CodeMentor AI
 
-CodeMentor AI is an AI-powered code review application. It combines a Java/Spring Boot backend with a React/Vite frontend to analyze submitted source code using Google's Gemini API and present focused engineering feedback.
+AI-powered code review platform that analyzes source code using Google
+Gemini and provides focused, actionable engineering feedback.
 
-Implemented capabilities include:
+Live Demo: https://codementor-ai-dtsb.onrender.com\
+GitHub: https://github.com/Shubhanshu1210/codementor-ai
 
-- JWT-authenticated user registration and login
-- BCrypt password hashing
-- Gemini-powered code review analysis
-- PostgreSQL persistence for submitted files and reviews
-- Monaco Editor for source-code input
-- Review history and protected review details
-- Analysis of bugs, code smells, performance, security, and best practices
-- Overall code-quality scoring from 0 to 10
-- Swagger/OpenAPI documentation
+Overview
 
-## Technology Stack
+CodeMentor AI is a full-stack AI-powered code review application built
+with Java, Spring Boot, React, PostgreSQL, and Google Gemini.
 
-### Backend
+Users can securely register and log in, submit source code through a
+Monaco-based editor, and receive AI-generated feedback covering bugs,
+code smells, performance, security, and best practices.
 
-- Java 21
-- Spring Boot 3.5.4
-- Spring Security
-- JWT with JJWT
-- Spring Data JPA
-- PostgreSQL
-- Gemini REST API
-- Swagger/OpenAPI
-- RestTemplate
+Each review receives an overall code-quality score from 0 to 10 and
+is stored in PostgreSQL so users can view their review history later.
 
-### Frontend
+Features
 
-- React
-- Vite
-- TypeScript
-- React Router
-- Axios
-- Tailwind CSS
-- Monaco Editor
+JWT-based authentication
 
-## Project Structure
+BCrypt password hashing
 
-```text
+Real Google Gemini AI code analysis
+
+Monaco Editor for source-code input
+
+Multiple programming language support
+
+Bug detection
+
+Code smell analysis
+
+Performance analysis
+
+Security recommendations
+
+Best-practice recommendations
+
+Overall code-quality score from 0--10
+
+Review history
+
+Protected review details
+
+PostgreSQL persistence
+
+Swagger/OpenAPI documentation
+
+Production deployment with Render
+
+Responsive React interface
+
+How It Works
+
+User
+  |
+  v
+React + Vite Frontend
+  |
+  | JWT Authentication
+  v
+Spring Boot REST API
+  |
+  +--------------> PostgreSQL
+  |                  |
+  |                  +-- Users, code files, reviews
+  |
+  v
+Google Gemini API
+  |
+  v
+AI Code Analysis
+  |
+  +-- Bug Detection
+  +-- Code Smells
+  +-- Performance
+  +-- Security
+  +-- Best Practices
+  |
+  v
+Review Score + Feedback
+  |
+  v
+React Review Details
+
+Technology Stack
+
+Backend
+
+Java 21
+
+Spring Boot 3.5.4
+
+Spring Security
+
+JWT / JJWT
+
+Spring Data JPA
+
+PostgreSQL
+
+Google Gemini REST API
+
+Swagger / OpenAPI
+
+RestTemplate
+
+Frontend
+
+React
+
+TypeScript
+
+Vite
+
+React Router
+
+Axios
+
+Tailwind CSS
+
+Monaco Editor
+
+Deployment
+
+Render Web Service --- Spring Boot backend
+
+Render Static Site --- React frontend
+
+Render PostgreSQL --- database
+
+GitHub --- source control and deployment
+
+Project Structure
+
 codementor-ai/
-├── src/                 # Spring Boot backend
-├── frontend/            # React/Vite frontend
-├── pom.xml
-├── mvnw
-├── mvnw.cmd
-└── .env.example
-```
+|
++-- src/
+|   +-- main/
+|       +-- java/              # Spring Boot backend
+|       +-- resources/
+|           +-- application.yaml
+|
++-- frontend/
+|   +-- src/
+|       +-- api/               # API services
+|       +-- auth/              # Authentication state
+|       +-- components/        # Shared UI components
+|       +-- pages/             # Application pages
+|       +-- types/             # TypeScript types
+|       +-- styles/            # Global styles
+|   +-- package.json
+|   +-- vite.config.ts
+|
++-- pom.xml
++-- mvnw
++-- mvnw.cmd
++-- Dockerfile
++-- .env.example
++-- README.md
 
-## Configuration
+Live Application
 
-Do not commit `.env` files or real credentials. Copy the root `.env.example` to a local environment configuration and provide values through your shell or local environment tooling.
+Frontend: https://codementor-ai-dtsb.onrender.com
 
-Required backend variables:
+Backend API: https://codementor-ai-api.onrender.com
 
-```text
+Swagger UI (local): http://localhost:8080/swagger-ui/index.html
+
+Configuration
+
+Never commit real credentials or .env files to GitHub.
+
+Backend Environment Variables
+
 DB_PASSWORD=your-local-postgres-password
 JWT_SECRET=your-long-random-jwt-secret
 GEMINI_API_KEY=your-gemini-api-key
 GEMINI_MODEL=gemini-3.5-flash
-```
 
-The backend reads these values from [application.yaml](src/main/resources/application.yaml). `GEMINI_MODEL` defaults to `gemini-3.5-flash` when it is not set.
+Production also uses:
 
-The frontend uses the public browser variable below in `frontend/.env.example`:
+DATABASE_HOST=your-database-host
+DATABASE_PORT=5432
+DATABASE_NAME=your-database-name
+DATABASE_USERNAME=your-database-username
+FRONTEND_URL=https://your-frontend.onrender.com
 
-```text
+GEMINI_MODEL defaults to gemini-3.5-flash.
+
+The backend configuration is located at:
+
+src/main/resources/application.yaml
+
+Frontend Environment Variable
+
+Local:
+
 VITE_API_BASE_URL=http://localhost:8080
-```
 
-`VITE_*` values are exposed to the browser. Never put database credentials, JWT secrets, Gemini API keys, or other private values in frontend environment files.
+Production:
 
-## Run Locally
+VITE_API_BASE_URL=https://codementor-ai-api.onrender.com
 
-### Prerequisites
+VITE_* variables are exposed to the browser. Never place database
+passwords, JWT secrets, or Gemini API keys in frontend environment
+variables.
 
-- Java 21
-- Node.js and npm
-- PostgreSQL 18 or a compatible PostgreSQL version
-- A PostgreSQL database named `codementor`
-- Backend environment variables configured
+Run Locally
 
-### Backend
+Prerequisites
 
-Start PostgreSQL and create the database if it does not already exist:
+Java 21
 
-```sql
+Node.js and npm
+
+PostgreSQL
+
+Google Gemini API key
+
+1. Clone the Repository
+
+git clone https://github.com/Shubhanshu1210/codementor-ai.git
+cd codementor-ai
+
+2. Create PostgreSQL Database
+
 CREATE DATABASE codementor;
-```
 
-From the repository root, configure the required environment variables and start Spring Boot:
+3. Configure Backend
 
-```powershell
+PowerShell:
+
 $env:DB_PASSWORD = "your-local-postgres-password"
 $env:JWT_SECRET = "your-long-random-jwt-secret"
 $env:GEMINI_API_KEY = "your-gemini-api-key"
 $env:GEMINI_MODEL = "gemini-3.5-flash"
+$env:FRONTEND_URL = "http://localhost:5173"
+
+Start Spring Boot:
+
 .\mvnw.cmd spring-boot:run
-```
 
-The backend runs at `http://localhost:8080`.
+Backend runs at:
 
-### Frontend
+http://localhost:8080
 
-In a second terminal:
+4. Start the Frontend
 
-```powershell
 cd frontend
 npm install
 npm run dev
-```
 
-Open the frontend at:
+Frontend runs at:
 
-```text
 http://localhost:5173
-```
 
-The backend CORS configuration allows `localhost:5173` and `localhost:3000`.
+API
 
-## Tests and Build
+Authentication
 
-Run backend tests from the repository root:
+Register
 
-```powershell
-.\mvnw.cmd clean test
-```
-
-Build the frontend:
-
-```powershell
-cd frontend
-npm run build
-```
-
-## API
-
-The backend base URL is `http://localhost:8080`.
-
-### Authentication
-
-#### Register
-
-```http
 POST /api/auth/register
 Content-Type: application/json
-```
 
-Request body:
-
-```json
 {
   "name": "Jane Developer",
   "email": "jane@example.com",
   "password": "password123"
 }
-```
 
-#### Login
+Login
 
-```http
 POST /api/auth/login
 Content-Type: application/json
-```
 
-Request body:
-
-```json
 {
   "email": "jane@example.com",
   "password": "password123"
 }
-```
 
-Both successful authentication endpoints return a JWT response containing `token`, `message`, and `email`.
+Successful authentication returns a JWT response containing token,
+message, and email.
 
-### Reviews
+Code Reviews
 
-#### Submit code for review
+Submit Code
 
-```http
 POST /api/review/submit
 Authorization: Bearer <JWT>
 Content-Type: application/json
-```
 
-Request body:
-
-```json
 {
   "fileName": "Example.java",
   "language": "java",
   "code": "public class Example {}"
 }
-```
 
-#### Review history
+The backend sends submitted code to Google Gemini for analysis and
+stores the resulting review in PostgreSQL.
 
-```http
+Review History
+
 GET /api/review/history
 Authorization: Bearer <JWT>
-```
 
-#### Review details
+Returns reviews belonging to the authenticated user.
 
-```http
+Review Details
+
 GET /api/review/{id}
 Authorization: Bearer <JWT>
-```
 
-All review endpoints require the authenticated user's JWT in the `Authorization` header. Users can access only their own stored reviews.
+Users can access only their own stored reviews.
 
-Swagger UI is available at `http://localhost:8080/swagger-ui/index.html` when the backend is running.
+Testing
 
-## Security Notes
+Backend Tests
 
-- Secrets are supplied through environment variables and must never be committed.
-- API keys, JWTs, passwords, and database credentials must not be added to source code or documentation.
-- Frontend `VITE_*` variables are public to the browser; keep Gemini credentials backend-only.
-- Do not commit `.env` files.
-- Local PostgreSQL credentials should remain outside the repository.
+.\mvnw.cmd clean test
+
+Frontend Production Build
+
+cd frontend
+npm run build
+
+Security
+
+JWT authentication protects private API endpoints.
+
+Passwords are hashed using BCrypt.
+
+JWT secrets are provided through environment variables.
+
+Gemini API credentials remain backend-only.
+
+Frontend VITE_* variables are public.
+
+Database credentials are never stored in source code.
+
+.env files are excluded from Git.
+
+CORS is restricted to configured frontend origins.
+
+OPTIONS preflight requests are explicitly supported.
+
+Users can access only their own review history and review details.
+
+No API keys, passwords, JWT secrets, or database credentials are
+committed to the repository.
+
+Deployment
+
+The application is deployed using Render.
+
+Backend
+
+GitHub Repository
+       |
+       v
+Render Web Service
+       |
+       v
+Spring Boot + Java 21
+       |
+       +-- PostgreSQL
+       |
+       +-- Google Gemini API
+
+Frontend
+
+GitHub Repository
+       |
+       v
+Render Static Site
+       |
+       v
+React + Vite
+
+The production frontend communicates with:
+
+https://codementor-ai-api.onrender.com
+
+Future Improvements
+
+Support for additional programming languages
+
+Streaming AI review responses
+
+Side-by-side code and review interface
+
+Review filtering and search
+
+Improved review scoring
+
+Code diff visualization
+
+GitHub repository integration
+
+Automated code review through pull requests
+
+User profile and review analytics
+
+CI/CD automated testing
+
+Author
+
+Shubhanshu Kumar
+
+Full-Stack Developer | Java | Spring Boot | React | PostgreSQL | AI
+Integration
+
+License
+
+This project is intended for learning, portfolio, and demonstration
+purposes.
