@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: codementor-ai
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/codementor
+    username: postgres
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 86400000
+
+gemini:
+  api:
+    key: ${GEMINI_API_KEY}
+    model: ${GEMINI_MODEL:gemini-3.5-flash}
